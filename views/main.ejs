@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.108.0">
+    <title>AASDBC-BGI Indore</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/style.css"> <!-- css link -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- animation css style link -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> <!-- animation  link -->
+
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.rtl.min.css"
+        integrity="sha384-+4j30LffJ4tgIMrq9CwHvn0NjEvmuDCOfk6Rpg2xg7zgOxWWtLtozDEEVvBPgHqE" crossorigin="anonymous">
+
+    <!-- Favicons -->
+    <meta name="theme-color" content="#712cf9">
+
+    <!-- Custom styles for this template  -->
+    <link href="carousel.css" rel="stylesheet"> <!--  -->
+</head>
+
+
+<body style="padding-top: 75px;">
+    <!-- navbar -->
+    <%- include('common/header.ejs'); %>
+
+        <main>
+            <!-- slider 2 -->
+            <div>
+                <video class="ratio" style="height: auto; width:100vw;" muted controls autoplay loop>
+                    <source src="../static/video/BGI_Bhopal_Alumni_Meet_2022.mp4" type="video/mp4">
+                </video>
+            </div>
+
+
+
+
+            <!-- ALUMNI ARTICLE CONATINER -->
+            <div class="container-fluid">
+                <div class="container-fluid">
+                    <div class="row featurettes bg-light d-flex justify-content-center align-items-center py-5">
+                        <div class="col-md-7 order-md-2 placeholder-wave">
+                            <h3 class="featurette-heading text-center" style="font-weight: 400;">About us
+                            </h3>
+                            <p class=" placeholder-glow pla"
+                                style=" font-weight: 400;text-align: justify;"
+                                >Alumni refers to individuals who have graduated from a particular institution or program. This can
+                                include schools, colleges, universities, and other educational or professional organizations.
+                                Alumni often maintain a connection to their alma mater or program, whether through ongoing
+                                involvement in events and activities, financial contributions, or networking with other
+                                graduates. Many institutions have dedicated alumni associations or organizations that
+                                facilitate these connections and provide resources and support to alumni.
+
+                                <!-- Alumni can play an important role in the success of an institution, as they often serve as ambassadors and advocates for their alma mater, helping to recruit new students and support fundraising efforts. In turn, institutions may offer benefits and services to alumni, such as access to career services, educational opportunities, and social events</p> -->
+
+                            <p><a class="bf text-center" href="/alumni/about">Read more...</a></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Wrap the rest of the page in another container to center all the content. -->
+            <!-- alumni spolight -->
+            <div class="container-fluid marketing py-5 bg-light" data-aos="fade">
+                <h1 class="text text-center p-4 py-5" data-aos="fade">ALUMNI OF SDBC-BGI INDORE</h1>
+
+                <!-- Three columns of text below the carousel -->
+                <div class="test" data-aos="fade">
+                    <div class="row py-3 d-flex align-items-center justify-content-center" id="images">
+                        
+                        <% for(let count=0; count < alumni.length; count++ ){ %>
+                            <div class="col-lg-4 my-5 px-4 d-flex flex-column align-items-center justify-content-center"
+                                data-aos="fade">
+                                <img class="bd-placeholder-img rounded-circle" width="140" height="140" role="img"
+                                    aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice"
+                                    focusable="false" src="/alimage/<%= alumni[count].img %>">
+                                <!-- <title><%= alumni[count].name %></title> -->
+                                <h2 class="fw-normal">
+                                    <%= alumni[count].name %>
+                                </h2>
+                                <p class="text-center">
+                                    <%= alumni[count].designation %> at <%= alumni[count].companyname %>
+                                </p>
+                                <p><a class="btn btn-primary" href="/alumni/detail/<%= alumni[count].uniqueId %>">More About
+                                        &raquo;</a>
+                                </p>
+                            </div>
+                            <% } %>
+                    </div>
+                </div>
+
+
+            </div>
+        </main>
+
+        <!-- DIRECTOR SIR MSG WITH PHOTOS -->
+        <div class="container-fluid" data-aos="fade" style="display: none;">
+            <div class="row featurettes bg-light d-flex justify-content-center align-items-center py-5">
+                <div class="col-md-7 order-md-2 placeholder-wave">
+                    <h2 class="featurette-heading  py-5">Dr. Premanand Singh Chauhan
+                    </h2>
+                    <p class=" placeholder-glow fw-bold">It gives us
+                        immense pleasure to honor Dr. Chauhan. <br> He is an
+                        enthusiast, a
+                        Philomath, an idealist and a versatile performer.<br>A highly qualified educationist
+                        possessing the degree of doctorate in Mechanical Engineering from Maulana Azad National
+                        Institute of Technology.<br>
+                        Under his guidance BGI Indore seeks a version extension and exuberant growth.</p>
+                </div>
+                <div class="col-md-5">
+                    <img src="../static/photos/img/dr_sir.png" class="img-fluid img-thumbnail" width="400" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-row justify-content-around flex-wrap py-5">
+            <iframe class="my-2" height="640" width="360" class="justify-content-center align-items-center text-center"
+                src="https://youtube.com/embed/3PDPewojhRY?autoplay=1">
+            </iframe>
+            <iframe class="my-2" height="640" width="360" src="https://www.youtube.com/embed/Hb0bI7BJqDo?autoplay=1">
+            </iframe>
+        </div>
+    
+        <!-- footer -->
+        <%- include('common/footer.ejs'); %>
+
+            <!-- animation js link -->
+            <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+            <script>
+                AOS.init({
+                    offset: 300,
+                    duration: 2000,
+                });
+            </script>
+            <!-- MDB -->
+            <script type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"></script>
+
+</body>
+
+</html>

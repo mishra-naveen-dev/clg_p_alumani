@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="../static/style.css"> <!-- css link -->
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.rtl.min.css"
+        integrity="sha384-+4j30LffJ4tgIMrq9CwHvn0NjEvmuDCOfk6Rpg2xg7zgOxWWtLtozDEEVvBPgHqE" crossorigin="anonymous">
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+
+    <title>Alumni form</title>
+</head>
+
+<body style="padding-top: 75px;">
+    <!-- nav -->
+    <%- include('common/header.ejs'); %>
+    <div class="p-4 p-md-5 my-7 rounded d-flex align-items-center justify-content-center"
+            style="background-color: #f6f2ed;">
+            <div class="col-md-6 px-0 d-flex flex-column align-items-center justify-content-center"
+                style="width: 100% ;">
+                <h1 class="heading  fw-bold text-center ">Registration For Alumni Of SDBC-BGI Indore</h1>
+                <a href="https://sdbc.ac.in/">
+                    <h3 class="text-md-center text-center text-black">Be a Part of SDBC-BGI Family </h3>
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-light py-5" style="min-height: 100vh;">
+
+            <div class="container bg-white py-3 px-4 d-flex flex-column justify-content-center"
+                style="max-width: 650px;">
+                <div class="container-fluid p-3 text-center">
+                    <h3 class="mb-3">Alumni Registration Form</h3>
+                </div>
+                <div class="container text-center" style="display: none;" id="submitted">
+                    <span class="material-symbols-outlined" style="font-size: 70px;">
+                        check_circle
+                    </span>
+                    <h5>Thank You!</h5>
+                    <p>The form was submitted successfully.</p>
+                    <p>
+                        <h7>Your uniqueId : </h7>
+                        <span class="fw-semibold" id="uniqueIdDisplay">0000XX0000</span>
+                        <span class="material-symbols-outlined" style="font-size: 15px;cursor: pointer;"
+                            onclick="copyToClipboard()">
+                            content_copy
+                        </span>
+                    </p>
+                    <p>
+                        <a class="btn btn-link" onclick="anotherResponse()" style="cursor: pointer;">Submit another
+                            response</a>
+                    </p>
+                </div>
+                <form class="" style="display: none;" id="alumani-form">
+                    <div class="row">
+                        <div class="col">
+                            <!-- Name input -->
+                            <div class="form-outline">
+                                <input type="text" class="form-control my-4" name="name" required=""
+                                    title="Enter your full name" />
+                                <label class="form-label">Name *</label>
+                            </div>
+                            <!-- Enrollement No -->
+                            <div class="form-outline">
+                                <input type="text" class="form-control my-4" name="enr_no" pattern="^\d{4}\w{2,3}\d{6}$"
+                                    placeholder="0834XX211XXX" title="Enter correct enrollement number" />
+                                <label class="form-label">Enrollment no</label>
+                            </div>
+                        </div>
+                        <div class="col d-flex flex-column justify-content-center align-items-center">
+                            <!-- Profile Photo -->
+                            <img style="width: 100px; height: 100px;" src="../static/default_profile_photo.webp"
+                                class="img-thumbnail" id="profilePhotoPreview" alt="...">
+                            <input class="form-control form-control-sm" required placeholder="hello"
+                                title="Select profile photo" id="profilePhoto" accept="image/*" type="file"
+                                style="max-width: 200px;" placeholder="" name="profilePhoto"
+                                onchange="submitProfilePhoto(event)">
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="number" id="adm_year" title="Enter admission year" min="2005" step="1"
+                                    class="form-control my-3" required="" name="adm_year" />
+                                <label class="form-label" for="form8Example3">Admission year *</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="number" id="pout_year" title="Enter passout year" min="2005"
+                                    class="form-control my-3" required="" name="pout_year" />
+                                <label class="form-label" for="form8Example4">Passout year *</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col my-3">
+                            <div class="formoutline">
+                                <select class="form-select" aria-label="Default select example"
+                                    style="color: rgb(119, 119, 124);" required="" name="college">
+                                    <option value="">College Name *</option>
+                                    <option value="SDBCE(KCBTA)">SDBCE (KCBTA)</option>
+                                    <option value="SDBCT">SDBCT</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col my-3">
+                            <div class="formoutline">
+                                <select class="form-select" aria-label="Default select example"
+                                    style="color: rgb(119, 119, 124);" required="" name="course" id="course">
+                                    <option value="">Course *</option>
+                                    <option value="Btech-CSE">B.Tech-CSE</option>
+                                    <option value="Btech-IT">B.Tech-IT</option>
+                                    <option value="Btech-ECE">B.Tech-ECE</option>
+                                    <option value="Btech-CE">B.Tech-CE</option>
+                                    <option value="Btech-ME">B.Tech-ME</option>
+                                    <option value="BE-CSE">BE-CSE</option>
+                                    <option value="BE-IT">BE-IT</option>
+                                    <option value="BE-ECE">BE-ECE</option>
+                                    <option value="BE-CE">BE-CE</option>
+                                    <option value="BE-ME">BE-ME</option>
+                                    <option value="MCA">MCA</option>
+                                    <option value="M.E. Structural Engineering">M.E. Structural Engineering</option>
+                                    <option value="M.Tech Computer Science & Engineering">M.Tech Computer Science &
+                                        Engineering</option>
+                                    <option value="M.Tech Digital Communication">M.Tech Digital Communication</option>
+                                    <option value="M.Tech Thermal System & Design">M.Tech Thermal System & Design
+                                    </option>
+                                    <option value="MBA">MBA</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="tel" title="Required pattern +91XXXXXXXXXX" pattern="^[+]91(9|8|7|6)\d{9}$"
+                                    placeholder="+91XXXXX-XXXXX" class="form-control my-3" required=""
+                                    name="mobileno" />
+                                <label class="form-label">Mobile no *</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="email" title="Enter your email" class="form-control my-3" required=""
+                                    name="email" />
+                                <label class="form-label">Email *</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" class="form-control my-3" name="facebookid" />
+                                <label class="form-label">Facebook ID</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" class="form-control my-3" name="linkedinid" />
+                                <label class="form-label">Linkedin ID</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" class="form-control my-3" required="" name="companyname">
+                                <label class="form-label">Present Employer *</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" class="form-control my-3" required="" name="designation">
+                                <label class="form-label">Designation *</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row d-flex flex-row justify-content-center border rounded mx-1 py-3">
+                        <div class="row py-2 px-3" style="font-weight: 400;color: rgba(86, 86, 86, 0.789);">Working
+                            Location *</div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="formoutline">
+                                    <select class="form-select" aria-label="Default select example"
+                                        style="color: rgb(119, 119, 124);" required="" id="countrySelect" name="country"
+                                        onchange="fetchState()">
+                                        <option value="">Country *</option>
+                                        <% for(var i=0; i < countries.length; i++) { %>
+                                            <option value='<%= countries[i].isoCode %>'>
+                                                <%= countries[i].name %>
+                                            </option>
+                                            <%}%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="formoutline">
+                                    <select class="form-select" aria-label="Default select example"
+                                        style="color: rgb(119, 119, 124);" id="stateSelect" required="" name="state"
+                                        onchange="fetchCity()">
+                                        <option value="">State *</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="formoutline">
+                                <select class="form-select" aria-label="Default select example"
+                                    style="color: rgb(119, 119, 124);" id="citySelect" required="" name="city">
+                                    <option value="">City *</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" class="form-control my-3" required="" name="permanentaddress">
+                                <label class="form-label">Permanent Address *</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-outline">
+                                <input type="text" class="form-control my-3" required="" name="localaddress">
+                                <label class="form-label">Present Address *</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-outline">
+                                <textarea class="form-control my-3" name="msg" id="textAreaMsg" rows="4"></textarea>
+                                <label class="form-label" for="textAreaMsg">Give-Review</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-4">
+                        <button type="submit" id="submitbtn" class="btn btn-primary col" style="width: 200px;">
+                            <span id="submitbtnspinner" style="display: none;" class="spinner-border spinner-border-sm"
+                                role="status" aria-hidden="true"></span>
+                            Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="alert" class="alert alert-danger" role="alert"
+            style="position: fixed;bottom: 20px;right: 30px;display: none;">
+            Server error, try again after some time
+        </div>
+        <!-- footer -->
+        <%- include('common/footer.ejs'); %>
+
+</body>
+<script src="../static/js/index.js"></script>
+<!-- MDB -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"></script>
+
+</html>
